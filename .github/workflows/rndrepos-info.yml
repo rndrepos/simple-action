@@ -11,16 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+            
       - uses: actions/checkout@v3
 
-      - name: show brach info and GitHub context
+      - name: show branch info and GitHub context
         run: |
           echo Info follows on ${{ github.repository }}
           echo Default branch is "main"
-          echo "$GITHUB_CONTEXT"
+          echo Size of repository is `du -hs ${{ github.workspace }}`
+          
       - name: Dump job context
         env: 
-          JOB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$JOB_CONTEXT"
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
                 
    # add your jobs here     
