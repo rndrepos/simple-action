@@ -1,0 +1,26 @@
+name: Repo Info with context
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: show brach info and GitHub context
+        run: |
+          echo Info follows on ${{ github.repository }}
+          echo Default branch is "main"
+          echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env: 
+          JOB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$JOB_CONTEXT"
+                
+   # add your jobs here     
