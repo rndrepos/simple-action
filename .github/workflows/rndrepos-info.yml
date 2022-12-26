@@ -14,12 +14,14 @@ jobs:
             
       - uses: actions/checkout@v3
           
-      - name: Show repo infot
+      - name: Show repo info
         env: 
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo Info follows on ${{ github.repository }}
+          echo Repository is ${{ github.repository }}
+          echo Default branch is main
           echo Size of repository is `du -hs ${{ github.workspace }}`
+          echo Context dump follows:
           echo "$GITHUB_CONTEXT"
                 
    # add your jobs here     
