@@ -2,8 +2,9 @@ name: Repo Info with context
 
 on:
   push:
-
-  
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 
 jobs:
   info:
@@ -12,17 +13,13 @@ jobs:
     steps:
             
       - uses: actions/checkout@v3
-      
-   
-      - name: show repo info and GitHub context
-        run: |
-          echo Info follows on ${{ github.repository }}
-          echo Default branch is ${{ default-branch }}
-          echo Size of repository is `du -hs ${{ github.workspace }}`
           
-      - name: Dump job context
+      - name: Show repo infot
         env: 
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: |
+          echo Info follows on ${{ github.repository }}
+          echo Size of repository is `du -hs ${{ github.workspace }}`
+          echo "$GITHUB_CONTEXT"
                 
    # add your jobs here     
