@@ -17,7 +17,7 @@ jobs:
       - name: show repo info and GitHub context
         run: |
           echo Info follows on ${{ github.repository }}
-          echo Default branch is "$default-branch"
+          echo Default branch is $default-branch
           echo Size of repository is `du -hs ${{ github.workspace }}`
           
       - name: Dump job context
